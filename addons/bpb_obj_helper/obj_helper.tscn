@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/bpb_obj_helper/obj_helper.gd" type="Script" id=1]
+
+[node name="obj_helper" type="MeshInstance"]
+script = ExtResource( 1 )
+obj_file = null
