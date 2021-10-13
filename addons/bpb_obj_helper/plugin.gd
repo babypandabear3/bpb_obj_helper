@@ -2,11 +2,13 @@ tool
 extends EditorPlugin
 
 func _enter_tree():
-	add_custom_type("BPB_Obj_helper", "MeshInstance", preload("obj_helper.gd"), preload("icon.png"))
+	add_custom_type("BPB_Obj_helper", "MeshInstance", preload("obj_helper.gd"), preload("icon-obj.png"))
+	add_custom_type("BPB_Gltf_helper", "Spatial", preload("gltf_helper.gd"), preload("icon-gltf.png"))
 	set_input_event_forwarding_always_enabled()
 
 func _exit_tree():
 	remove_custom_type("BPB_Obj_helper")
+	remove_custom_type("BPB_Gltf_helper")
 
 func forward_spatial_gui_input(camera, event):
 	#KEYBOARD SHORTCUT
@@ -29,5 +31,5 @@ func try_update_everything():
 func recursive_update(parent_node):
 	for o in parent_node.get_children():
 		recursive_update(o)
-	if parent_node is BPB_Obj_helper:
+	if parent_node is BPB_Obj_helper or parent_node is BPB_Gltf_helper:
 		parent_node.update_mesh()
