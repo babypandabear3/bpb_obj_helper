@@ -24,9 +24,10 @@ func obj_file_set(file_path):
 func update_mesh():
 	var file = File.new()
 	if file.file_exists(obj_file):
-		var importer :EditorSceneImporter = EditorSceneImporter.new()
+		
 		var node
 		if Engine.editor_hint:
+			var importer :EditorSceneImporter = EditorSceneImporter.new()
 			node = importer.import_scene_from_other_importer(obj_file, 1, 30)
 		else:
 			node = load(obj_file).instance()
@@ -36,6 +37,7 @@ func update_mesh():
 
 		add_child(node)
 		node.owner = self
+		
 		if grid_tex:
 			apply_grid_tex(true)
 		else:
